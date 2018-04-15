@@ -1,4 +1,5 @@
 <?php
+    session_start();
     $con= mysqli_connect("localhost","root","", "writr");
     $query= mysqli_query($con, "SELECT * FROM `projects` LIMIT 20");
     echo "<div class=\"container\">
@@ -7,14 +8,12 @@
     while ($fetch = mysqli_fetch_assoc($query)){
         $title = nl2br($fetch['name']);
         $desc = nl2br($fetch['summary']);
-        
         echo "<div class=\"post-preview\">
             <a target=\"_blank\" href=\"1.php\" class=\"post-title\">
                 $title
               </h2>
-              <h3 class=\"post-subtitle\">
-                $desc....
-              </h3>
+              <h3 class=\"post-subtitle\">".$desc.
+              "</h3>
             </a>
           </div>
           <hr>";

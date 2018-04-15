@@ -1,4 +1,17 @@
-
+<?php
+// Start the session
+session_start();
+$_SESSION["url"]=(isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$filename=basename($_SESSION["url"]);
+$_SESSION["Project_ID"]=str_replace(".php","",$filename);
+$id= $_SESSION["Project_ID"];
+$con= mysqli_connect("localhost","root","", "writr");
+$query= mysqli_query($con, "SELECT * FROM `projects` WHERE project_id=$id");
+while ($fetch = mysqli_fetch_assoc($query)){
+    $title = nl2br($fetch['name']);
+    $desc = nl2br($fetch['summary']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +22,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Writr - A Collaborative Writing Platform!</title>
+        <title><?php echo $title?></title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,16 +52,16 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+                            <a class="nav-link js-scroll-trigger" href="#description">Description</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#portfolio">Your Profile</a>
+                            <a class="nav-link js-scroll-trigger" href="#central">Central Branch</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#about">Friends</a>
+                            <a class="nav-link js-scroll-trigger" href="#about">Side Branches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#about">Explore</a>
+                            <a class="nav-link js-scroll-trigger" href="#about">Contributors</a>
                         </li>
                     </ul>
                 </div>
@@ -59,24 +72,22 @@
         <header class="masthead">
             <div class="container">
                 <div class="intro-text">
-                    <div class="intro-lead-in">Welcome to Writr!</div>
+                    <div class="intro-lead-in"><?php echo $title   ?></div>
                     <div class="intro-heading text-uppercase"></div>
-                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#projects">Your Projects</a>
+                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#description">Read More</a>
                 </div>
             </div>
         </header>
 
         <!-- Services -->
-        <section id="projects">
+        <section id="description">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Your Projects</h2>
-                        <h3 class="section-subheading text-muted">All the projects you are currently working on.</h3>
+                        <h2 class="section-heading text-uppercase">Project Description</h2>
+                        <h3 class="section-subheading text-muted"><?php echo $desc?></h3>
+                        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#central">Central Branch</a>
                     </div>
-                </div>
-                <div id="div1">
-                    <div id="loader">Loading...</div>
                 </div>
             </div>
         </section>
@@ -180,17 +191,7 @@
             </div>
         </section>
 
-        <script>
-            $(document).ready(function(){
-                $("#loader").hide();
-                $('#div1').load("newsfeed.php",function(response, status, xhr) {
-                    if (status == "error") {
-                        var msg = "Sorry but there was an error: ";
-                        alert(msg + xhr.status + " " + xhr.statusText);
-                    }
-                });  
-            });
-        </script>
+
 
 
         <!-- Footer -->
