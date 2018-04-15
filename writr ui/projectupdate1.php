@@ -20,9 +20,7 @@ while ($fetch = mysqli_fetch_assoc($query)){
           <hr>";
 }
 
-echo "<div class=\"clearfix\">
-          </div>
-        </div>
+echo "</div>
       </div>
     </div>";
 ?>

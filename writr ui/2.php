@@ -93,13 +93,15 @@ while ($fetch = mysqli_fetch_assoc($query)){
         </section>
 
         <!-- Services -->
-        <section id="central">
+        <section class="bg-dark" id="central">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Central Branch</h2>
+                        <h2 class="section-heading text-uppercase bg-light">Central Branch</h2>
                     </div>
                 </div>
+                <br/>
+                <br/>
                 <div id="div1">
                     <div id="loader">Loading...</div>
                 </div>
