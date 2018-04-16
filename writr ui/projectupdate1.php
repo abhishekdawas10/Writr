@@ -1,6 +1,7 @@
 <?php
 session_start();
 $id= $_SESSION["Project_ID"];
+$file = file_get_contents("projects/$id/main.txt");
 $con= mysqli_connect("localhost","root","", "writr");
 $query= mysqli_query($con, "SELECT * FROM `projects` WHERE project_id=$id");
 echo "<div class=\"container\">
@@ -13,7 +14,7 @@ while ($fetch = mysqli_fetch_assoc($query)){
             <a style=\"color:#fed136\" class=\"post-title\">
                 $title
               </h2>
-              <h3 class=\"post-subtitle\">".$desc.
+              <h3 class=\"post-subtitle\">".$file.
         "</h3>
             </a>
           </div>
