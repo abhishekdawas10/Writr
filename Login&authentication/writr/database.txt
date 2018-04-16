@@ -1,0 +1,41 @@
+CREATE TABLE News (
+    NewsID int NOT NULL UNIQUE,
+    Title varchar(255) NOT NULL,
+    date DATETIME NOT NULL,
+	URL varchar(255) NOT NULL UNIQUE,
+	summary varchar(255),
+    PRIMARY KEY (NewsID, URL)
+);
+
+CREATE TABLE Registration (
+    UserID int NOT NULL UNIQUE,
+    Username varchar(255) NOT NULL UNIQUE,
+    Password varchar(255) NOT NULL,
+    Name varchar(255),
+    Email varchar(255) UNIQUE,
+    PRIMARY KEY (UserID)
+);
+
+CREATE TABLE NewsUser (
+    NewsID int NOT NULL,
+    UserID int NOT NULL,
+    Vote int,
+    PRIMARY KEY (NewsID, UserID),
+    FOREIGN KEY (NewsID) REFERENCES news(NewsID),
+    FOREIGN KEY (UserID) REFERENCES registration(UserID)
+);
+
+CREATE VIEW upvote AS
+SELECT N.NewsID, COUNT(U.Vote)
+FROM newsuser U, news N
+WHERE N.NewsID=U.NewsID AND U.Vote = '1'
+GROUP BY N.NewsID;
+
+CREATE VIEW downvote AS
+SELECT N.NewsID, COUNT(U.Vote)
+FROM newsuser U, news N
+WHERE N.NewsID=U.NewsID AND U.Vote = '-1'
+GROUP BY N.NewsID;
+
+SELECT COUNT(news.Title) FROM news WHERE news.Title LIKE '%jwkf%';
+SELECT vote FROM newsuser WHERE  NewsID = '3523'AND UserID = '65878';
