@@ -4,9 +4,9 @@
 		<title>TinyMCE - Get Data</title>
 	</head>
 	<body>
-		<form id="get-data-form" method="post">
+		<form id="get-data-form" method="get" action="save.php">
 
-			<textarea class="tinymce" id="texteditor"></textarea>
+			<textarea class="tinymce" id="texteditor" name="usertext"></textarea>
 			<input type="submit" value="Save Text to File">
 
 		</form>
@@ -46,6 +46,6 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="plugin/tinymce/tinymce.min.js"></script>
 		<script type="text/javascript" src="plugin/tinymce/init-tinymce.js"></script>
-		<script type="text/javascript" src="js/getdata.js"></script>
+			
 	</body>
 </html>
