@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TinyMCE - Get Data</title>
+	</head>
+	<body>
+		<form id="get-data-form" method="post">
+
+			<textarea class="tinymce" id="texteditor"></textarea>
+			<input type="submit" value="Save Text to File">
+
+		</form>
+		
+		<button onclick="saveTextAsFile()">Download Data</button>
+		<script type="text/javascript">
+			function saveTextAsFile()
+			{
+				var textToSave = tinymce.get("texteditor").getContent();
+				var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+				var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+				//var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+				var fileNameToSaveAs = "data_dump.txt";
+				var downloadLink = document.createElement("a");
+				downloadLink.download = fileNameToSaveAs;
+				downloadLink.innerHTML = "Download File";
+				downloadLink.href = textToSaveAsURL;
+				downloadLink.onclick = destroyClickedElement;
+				downloadLink.style.display = "none";
+				document.body.appendChild(downloadLink);
+ 
+				downloadLink.click();
+				document.getElementById("inputTextToSave").value = "deafult text";
+			}
+			
+			function destroyClickedElement(event)
+			{
+				document.body.removeChild(event.target);
+			}
+		</script>
+		
+		
+		<div id="data-container">
+		</div>
+
+		<!-- javascript -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="plugin/tinymce/tinymce.min.js"></script>
+		<script type="text/javascript" src="plugin/tinymce/init-tinymce.js"></script>
+		<script type="text/javascript" src="js/getdata.js"></script>
+	</body>
+</html>
