@@ -10,7 +10,7 @@ while ($fetch = mysqli_fetch_assoc($query)){
     $title = nl2br($fetch['name']);
     $desc = nl2br($fetch['main_branch']);
     echo "<div class=\"post-preview\">
-            <a target=\"_blank\" href=\"1.php\" class=\"post-title\">
+            <a style=\"color:#fed136\" class=\"post-title\">
                 $title
               </h2>
               <h3 class=\"post-subtitle\">".$desc.

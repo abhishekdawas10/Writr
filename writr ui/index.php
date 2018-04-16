@@ -42,10 +42,10 @@
                             <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#portfolio">Your Profile</a>
+                            <a class="nav-link js-scroll-trigger" href="#contact">Create a new project</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#about">Friends</a>
+                            <a class="nav-link js-scroll-trigger" href="#portfolio">Your Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#about">Explore</a>
@@ -80,6 +80,46 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">Create a new project!</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form id="contactForm" name="sentMessage" novalidate>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input class="form-control" id="name" type="text" placeholder="Project Title" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="desc" type="text" placeholder="Project Description" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" placeholder="Begin your project with some text" required data-validation-required-message="Please enter a message."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
 
 
         <!-- Portfolio Grid -->
