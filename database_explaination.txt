@@ -1,0 +1,40 @@
+users;
+A user has a unique user name or email. 
+There are two types of users:
+Users can be real or fake. Real users can own projects and perform actions such as open issues, create pull requests and push commits. Fake users only have a read access. Fake users are marked by the fake field.
+
+organization_members:
+Users that are members of an organization.
+
+projects:
+Information about repositories. A repository is always owned by a user
+The forked_from field is empty unless the project is a fork in which case it contains the id of the project the project is forked from.
+
+The deleted field means that the project has been deleted from Writr.
+
+project_members:
+Users that have commit access to the repository.
+
+
+commits
+Each commit is identified globally through its sha field. If the author or the committer has not configured his email address, no resolution to a user entry is possible. 
+
+The project_id field contains a link to the project that this commit has been first associated with. This might not be the project this commit was initially pushed to, e.g. in case the fork is processed before the parent. See project_commits.
+
+
+commit_parents:
+The parent commit(s) for each commit, as specified by Writr.
+
+
+project_commits:
+The commits belonging to the history of a project.
+
+More than one projects can share the same commits if one is a fork of the other.
+
+followers:
+A follower to a user.
+
+issues:
+An issue associated with a repository
+
+The assignee field is filed in with the user to which the issue was assigned at the time the issue was processed.
