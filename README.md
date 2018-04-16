@@ -1,1 +1,3 @@
-# CSP-202-Project
+# WRITR
+
+A collaborative writing platform!
