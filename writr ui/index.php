@@ -1,4 +1,7 @@
-
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,6 +83,26 @@
                 </div>
             </div>
         </section>
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = test_input($_POST["name"]);
+            $desc = test_input($_POST["desc"]);
+            $message = test_input($_POST["message"]);
+            $_SESSION["project_name"]= $name;
+            $_SESSION["project_desc"]=$desc;
+            $_SESSION["project_text"]=$message;
+            header("Location: newproject.php");
+            exit; 
+
+        }
+
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+        ?>
 
         <section id="contact">
             <div class="container">
@@ -90,28 +113,25 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <form id="contactForm" name="sentMessage" novalidate>
+                        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input class="form-control" id="name" type="text" placeholder="Project Title" required data-validation-required-message="Please enter your name.">
+                                    <input class="form-control" name="name" id="name" type="text" placeholder="Project Title" required data-validation-required-message="Please enter your project title.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" id="desc" type="text" placeholder="Project Description" required data-validation-required-message="Please enter your name.">
+                                    <input class="form-control" id="desc" name="desc" type="text" placeholder="Project Description" required data-validation-required-message="Please enter some project description.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" id="message" placeholder="Begin your project with some text" required data-validation-required-message="Please enter a message."></textarea>
+                                    <textarea class="form-control" id="message" name="message" placeholder="Begin your project with some text" required data-validation-required-message="Begin the project with some text."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
+                                <div class="clearfix"></div>
                                 <div id="success"></div>
-                                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+                                <div style="text-align:center;">
+                                    <input id="sendMessageButton" style="center" class="btn btn-primary btn-xl text-uppercase" name="Submit" type="submit" value="Submit">
+                                </div>
                             </div>
                         </form>
                     </div>

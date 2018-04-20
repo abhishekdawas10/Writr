@@ -3,7 +3,7 @@
 session_start();
 $_SESSION["url"]=(isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $filename=basename($_SESSION["url"]);
-$_SESSION["Project_ID"]=str_replace(".php","",$filename);
+$_SESSION["Project_ID"]=ltrim(strstr($_SESSION["url"], '?'), '?');
 $id= $_SESSION["Project_ID"];
 $con= mysqli_connect("localhost","root","", "writr");
 $query= mysqli_query($con, "SELECT * FROM `projects` WHERE project_id=$id");
@@ -44,7 +44,7 @@ while ($fetch = mysqli_fetch_assoc($query)){
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Writr</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.php">Writr</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fa fa-bars"></i>
