@@ -4,13 +4,14 @@
 		<title>TinyMCE - Get Data</title>
 	</head>
 	<body>
-		<form id="get-data-form" method="get" action="save.php">
+		<iframe name="myiframe" style="display: none;"></iframe>
+		<form id="get-data-form" name="get-data-form" method="post" action="save.php" target="myiframe">
 
 			<textarea class="tinymce" id="texteditor" name="usertext"></textarea>
-			<input type="submit" value="Save Text to File">
+			<input type="submit" value="Save Text">
 
 		</form>
-		
+		<br/>
 		<button onclick="saveTextAsFile()">Download Data</button>
 		<script type="text/javascript">
 			function saveTextAsFile()
@@ -37,13 +38,14 @@
 				document.body.removeChild(event.target);
 			}
 		</script>
-		
-		
+		<br/>
+		<br/>
 		<div id="data-container">
 		</div>
 
 		<!-- javascript -->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/load_data.js"></script>
 		<script type="text/javascript" src="plugin/tinymce/tinymce.min.js"></script>
 		<script type="text/javascript" src="plugin/tinymce/init-tinymce.js"></script>
 			
