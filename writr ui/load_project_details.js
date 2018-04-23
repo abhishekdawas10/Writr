@@ -44,7 +44,7 @@ google.charts.load('current', {'packages':['orgchart']});
 
           // do
       }
-
+ // myDataTable.setRowProperty(1, 'style', 'width: 90%; height: 20%;');
       
 
 
