@@ -54,7 +54,7 @@ include 'insert.php';
                 <div class="intro-text">
                     <div class="intro-lead-in">Project Created Successfully!</div>
                     <div class="intro-heading text-uppercase"></div>
-                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="projects.php?<?php echo $_SESSION['project_id']?>">Go to Project Page: <?php echo $_SESSION['project_name']?></a>
+                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="project.php?<?php echo $_SESSION['project_id']?>">Go to Project Page: <?php echo $_SESSION['project_name']?></a>
                 </div>
             </div>
         </header>
