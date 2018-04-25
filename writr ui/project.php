@@ -112,14 +112,6 @@ while ($fetch = mysqli_fetch_assoc($query)){
             </div>
         </section>
 
-        <section class="bg-light" id="about">
-            <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Project Sturcture/Branches</h2>
-            </div>
-                <div id="chart_div"></div>
-
-            <section>
-
         <script>
             $(document).ready(function(){
                 $("#loader").hide();
