@@ -1,11 +1,14 @@
 <?php
 // Start the session
 session_start();
+$count = ( isset($_GET["count"])) ? trim ($_GET["count"]) : 5;
+$_SESSION["project_count"]= $count;
+
 ?>
-<!DOCTYPE html>
 <html lang="en">
 
     <head>
+
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,13 +48,13 @@ session_start();
                             <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#contact">Create a new project</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#portfolio">Your Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#about">Explore</a>
+                            <a class="nav-link js-scroll-trigger" href="create.php">Create a new project</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="logout.php">Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -78,69 +81,62 @@ session_start();
                         <h3 class="section-subheading text-muted">All the projects you are currently working on.</h3>
                     </div>
                 </div>
-                <div id="div1">
-                    <div id="loader">Loading...</div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10 mx-auto">
+                            <div id="div1">
+                                <div id="loader">Loading...</div>
+                            </div>
+                            <div class="clearfix">
+                                <?php
+                                $count= $_SESSION["project_count"];
+                                $count= $count + 5;
+                                echo "
+                                    <a class=\"btn btn-primary float-right\" href=\"index.php?count=$count#projects\">Older Projects &rarr;</a>
+                                    "
+                                ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <p id="demo"></p>
+            <script>
+                function myFunction() {
+                    $.ajax({
+                        type: "GET",
+                        url: "getdata.php" ,
+                        success : function() { 
+                            location.reload();
+
+                        }
+                    });
+                }
+            </script>
+
         </section>
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $name = test_input($_POST["name"]);
-            $desc = test_input($_POST["desc"]);
-            $message = test_input($_POST["message"]);
-            $_SESSION["project_name"]= $name;
-            $_SESSION["project_desc"]=$desc;
-            $_SESSION["project_text"]=$message;
-            header("Location: newproject.php");
-            exit; 
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                        $name = test_input($_POST["name"]);
+                                        $desc = test_input($_POST["desc"]);
+                                        $message = test_input($_POST["message"]);
+                                        $_SESSION["project_name"]= $name;
+                                        $_SESSION["project_desc"]=$desc;
+                                        $_SESSION["project_text"]=$message;
+                                        ob_start();
+                                        header("Location: newproject.php");
+                                        ob_end_flush();
+                                        die();
+                                        exit; 
+                                    }
 
-        }
-
-        function test_input($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
+                                function test_input($data) {
+                                    $data = trim($data);
+                                    $data = stripslashes($data);
+                                    $data = htmlspecialchars($data);
+                                    return $data;
+                                }
         ?>
-
-        <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Create a new project!</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text" placeholder="Project Title" required data-validation-required-message="Please enter your project title.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" id="desc" name="desc" type="text" placeholder="Project Description" required data-validation-required-message="Please enter some project description.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" id="message" name="message" placeholder="Begin your project with some text" required data-validation-required-message="Begin the project with some text."></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div id="success"></div>
-                                <div style="text-align:center;">
-                                    <input id="sendMessageButton" style="center" class="btn btn-primary btn-xl text-uppercase" name="Submit" type="submit" value="Submit">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
 
         <!-- Portfolio Grid -->
         <section class="bg-light" id="portfolio">
@@ -246,7 +242,7 @@ session_start();
                 $('#div1').load("newsfeed.php",function(response, status, xhr) {
                     if (status == "error") {
                         var msg = "Sorry but there was an error: ";
-                        alert(msg + xhr.status + " " + xhr.statusText);
+                        walert(msg + xhr.status + " " + xhr.statusText);
                     }
                 });  
             });
@@ -258,7 +254,7 @@ session_start();
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <span class="copyright">Copyright &copy; Your Website 2018</span>
+                        <span class="copyright">Copyright &copy; Writr 2018</span>
                     </div>
                     <div class="col-md-4">
                         <ul class="list-inline social-buttons">

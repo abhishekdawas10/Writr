@@ -25,6 +25,19 @@ a:hover {
   color: #fed136 !important;
 }
 
+.load-more{
+    width: 99%;
+    background: #15a9ce;
+    text-align: center;
+    color: white;
+    padding: 10px 0px;
+    font-family: sans-serif;
+}
+
+.load-more:hover{
+    cursor: pointer;
+}
+
 h1,
 h2,
 h3,

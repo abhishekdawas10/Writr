@@ -1,10 +1,12 @@
 <?php
 require 'connect.php';
-$query= mysqli_query($con, "SELECT * FROM `projects` LIMIT 20");
-echo "<div class=\"container\">
-    <div class=\"row\">
-        <div class=\"col-lg-8 col-md-10 mx-auto\">";
+session_start();
+$count= $_SESSION["project_count"];
+$user_id=$_SESSION["user_id"];
+$query= mysqli_query($con, "SELECT * FROM `projects` WHERE user_id= $user_id LIMIT 0,$count");
+$check=0;
 while ($fetch = mysqli_fetch_assoc($query)){
+    $check=1;
     $title = nl2br($fetch['name']);
     $desc = nl2br($fetch['summary']);
     $id= $fetch['project_id'];
@@ -19,11 +21,9 @@ while ($fetch = mysqli_fetch_assoc($query)){
           </div>
           <hr>";
 }
+if ($check==0){
+    echo "<div class=\"post-preview\">You do not have any projects! <br/><a class=\"btn btn-primary float-center\" href=\"create.php\">Create a new project now!</a></div>";
+}
 
-echo "<div class=\"clearfix\">
-            <button class=\"btn btn-primary float-right\" id= \"old\">Older Projects &rarr;</a>
-          </div>
-        </div>
-      </div>
-    </div>";
+
 ?>

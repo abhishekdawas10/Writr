@@ -9,7 +9,6 @@ echo "<div class=\"container\">
         <div class=\"col-lg-8 col-md-10 mx-auto\">";
 while ($fetch = mysqli_fetch_assoc($query)){
     $title = nl2br($fetch['name']);
-    $desc = nl2br($fetch['main_branch']);
     echo "<div class=\"post-preview\">
             <a style=\"color:#fed136\" class=\"post-title\">
                 $title
