@@ -9,6 +9,9 @@
         <style>
             body  {
                 background-image: url("download.jpg");   
+                color:white;
+                background-color: white;
+                text-decoration-color: white;
             }
 
             .header {
@@ -31,7 +34,7 @@
         </style>
         <div class="header">
             <div font size="20">
-                <h2> LOGIN</h2>
+                <h2> WRITR</h2>
             </div>
         </div>
 
