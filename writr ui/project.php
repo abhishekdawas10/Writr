@@ -67,6 +67,9 @@ while ($fetch = mysqli_fetch_assoc($query)){
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#contact">Settings</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="logout.php">Log Out</a>
+                        </li>
                     </ul>
                 </div>
             </div>
