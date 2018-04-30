@@ -32,7 +32,7 @@ session_start();
 
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Writr</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.php">Writr</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fa fa-bars"></i>
@@ -40,10 +40,10 @@ session_start();
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="index.php#projects">Projects</a>
+                            <a class="nav-link js-scroll-trigger" href="index.php#profile">Your Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="index.php#portfolio">Your Profile</a>
+                            <a class="nav-link js-scroll-trigger" href="index.php#projects">Projects</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active js-scroll-trigger" href="create.php">Create a new project</a>

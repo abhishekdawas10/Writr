@@ -60,7 +60,7 @@ if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 
 
 </head>
-<body>
+<body  style="background-image:url(img/download.jpg)">
 <center>
 <br>
 <div style="font-family:Verdana, Geneva, sans-serif; font-size:24px;">REGISTRATION</div><br clear="all" /><br clear="all" /><br clear="all" />
