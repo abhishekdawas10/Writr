@@ -1,0 +1,215 @@
+
+
+/*Follow and Unfollow Button*/
+.button
+{
+	font-family: Arial, Helvetica, sans-serif; font-size:12px;
+	text-align: center;
+	min-width: 70px;
+	padding: 5px 7px;
+	color: white;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 18px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+	cursor: pointer;
+	border-radius: 5px;
+	float:left;
+	margin-left:25%;
+}
+
+/*Follow Button*/
+.follow
+{
+	color: #333;
+	background-color: whiteSmoke;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#E6E6E6));
+	background-image: -webkit-linear-gradient(top, white, #E6E6E6);
+	background-image: -o-linear-gradient(top, white, #E6E6E6);
+	background-image: linear-gradient(to bottom, white, #E6E6E6);
+	background-image: -moz-linear-gradient(top, white, #E6E6E6);
+	background-repeat: repeat-x;
+	border: 1px solid #E1E1E1;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	border-color: #E6E6E6 #E6E6E6 #BFBFBF;
+	border-bottom-color: #A2A2A2;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	padding:10px;
+}
+
+/*Unfollow Button*/
+.following
+{
+	background-color: #49AFCD;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5BC0DE), to(#2F96B4));
+	background-image: -webkit-linear-gradient(top, #5BC0DE, #2F96B4);
+	background-image: -o-linear-gradient(top, #5BC0DE, #2F96B4);
+	background-image: linear-gradient(to bottom, #5BC0DE, #2F96B4);
+	background-image: -moz-linear-gradient(top, #5BC0DE, #2F96B4);
+	background-repeat: repeat-x;
+	border-color: #2F96B4 #2F96B4 #1F6377;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+	padding:10px;
+}
+.following:hover
+{
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #BD362F;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#EE5F5B), to(#BD362F));
+	background-image: -webkit-linear-gradient(top, #EE5F5B, #BD362F);
+	background-image: -o-linear-gradient(top, #EE5F5B, #BD362F);
+	background-image: linear-gradient(to bottom, #EE5F5B, #BD362F);
+	background-image: -moz-linear-gradient(top, #EE5F5B, #BD362F);
+	background-repeat: repeat-x;
+	border-color: #BD362F #BD362F #802420;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+	filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+/*Profile Photo Wrapper*/
+.vpb_profile_photo_wrapper
+{
+	width:200px;
+	border: solid 1px #cbcbcb;
+	 background-color: #FFF;
+	 box-shadow: 0 0 15px #cbcbcb;
+	-moz-box-shadow: 0 0 15px #cbcbcb;
+	-webkit-box-shadow: 0 0 15px #cbcbcb;
+	-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+	padding:10px;
+	padding-left:20px;
+	padding-right:20px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+	text-align:center;
+	float:left;
+}
+
+
+/*Follow and Unfollow Wrapper*/
+.vpb_follow_and_unfollow_wrapper
+{
+	width:200px;
+	border: solid 1px #cbcbcb;
+	 background-color: #FFF;
+	 box-shadow: 0 0 15px #cbcbcb;
+	-moz-box-shadow: 0 0 15px #cbcbcb;
+	-webkit-box-shadow: 0 0 15px #cbcbcb;
+	-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+	padding:10px;
+	padding-left:20px;
+	padding-right:20px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+	text-align:center;
+	float:left;
+}
+
+
+/*Follow and Unfollow Wrapper*/
+.vpb_people_you_may_want_to_follow_wrapper
+{
+	width:230px;
+	border: solid 1px #cbcbcb;
+	 background-color: #FFF;
+	 box-shadow: 0 0 15px #cbcbcb;
+	-moz-box-shadow: 0 0 15px #cbcbcb;
+	-webkit-box-shadow: 0 0 15px #cbcbcb;
+	-webkit-border-radius: 5px 0px 0px 5px;-moz-border-radius: 5px 0px 0px 5px;border-radius: 5px 0px 0px 5px;
+	padding:10px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:15px;
+	color:#005B88;
+	text-align:left;
+	float:right;
+	cursor:pointer;
+}
+.vpb_people_you_may_want_to_follow_wrapper:hover
+{
+	 background-color: #C63;
+	cursor:pointer;
+	color:#FFF;
+}
+
+
+.vpb_people_you_may_want_to_follow_photos{width:80px;min-height:60px; height:auto;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; margin-right:10px; float:left;}
+
+
+/*Form Wrapper*/
+.vpb_main_wrapper
+{
+	width:450px;
+	margin: 0 auto;
+	border: solid 1px #cbcbcb;
+	 background-color: #FFF;
+	 box-shadow: 0 0 15px #cbcbcb;
+	-moz-box-shadow: 0 0 15px #cbcbcb;
+	-webkit-box-shadow: 0 0 15px #cbcbcb;
+	-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+	padding:10px;
+	padding-left:20px;
+	padding-right:20px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:11px;
+}
+
+
+/*Input Boxes Style*/
+.vpb_textAreaBoxInputs {min-width:260px; width:auto;height:20px;font-family:Verdana, Geneva, sans-serif; font-size:12px;padding:7px; padding-left:10px; padding-right:10px;border: 1px solid #6CF;outline:none;border-radius: 2px;-moz-border-radius: 2px;-webkit-border-radius:2px; line-height:20px;}
+.vpb_textAreaBoxInputs:focus {outline:none;border: 1px solid #6CF;box-shadow: 0 0 10px #6AB5FF;-moz-box-shadow: 0 0 10px #6AB5FF;-webkit-box-shadow: 0 0 10px #6AB5FF;}
+
+
+/*Error Message Style*/
+.info { border: 1px solid #999; padding:12px 20px 12px 20px; font: bold 12px verdana;-moz-box-shadow: 0 0 5px #888; -webkit-box-shadow: 0 0 5px#888;box-shadow: 0 0 5px #888;text-shadow: 2px 2px 2px #ccc;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;font-family:Verdana, Geneva, sans-serif; font-size:11px; line-height:20px;font-weight:normal;color: black;background: #BDE5F8;}
+
+
+/*Vasplus Button*/
+.vpb_general_button 
+{
+ background-color: #7fbf4d;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7fbf4d), color-stop(100%, #63a62f));
+  background-image: -webkit-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -moz-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -ms-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: -o-linear-gradient(top, #7fbf4d, #63a62f);
+  background-image: linear-gradient(top, #7fbf4d, #63a62f);
+  border: 2px solid #63a62f;box-shadow: 0 2px 3px #666666;-moz-box-shadow: 0 2px 3px #666666;-webkit-box-shadow: 0 2px 3px #666666;
+  -webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;
+  color: #fff;
+  font-family:Verdana, Geneva, sans-serif;
+  font-size:14px;
+  text-align: center;
+  text-shadow: 0 -1px 0 #4c9021;
+  min-width: 70px;
+  width: auto;
+  padding:9px;
+  padding-left:13px; padding-right:13px;padding-bottom:7px;
+  text-decoration:none;
+  float:left;
+}
+.vpb_general_button:hover 
+{
+    background-color: #76b347;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #76b347), color-stop(100%, #5e9e2e));
+    background-image: -webkit-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -moz-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -ms-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: -o-linear-gradient(top, #76b347, #5e9e2e);
+    background-image: linear-gradient(top, #76b347, #5e9e2e);
+    box-shadow: 0 2px 3px #666666;
+	-moz-box-shadow: 0 2px 3px #666666;
+	-webkit-box-shadow: 0 2px 3px #666666;
+	-webkit-border-radius: 8px;-moz-border-radius: 8px;border-radius: 8px;
+    cursor: pointer; 
+}
