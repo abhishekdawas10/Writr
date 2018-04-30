@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TinyMCE - Get Data</title>
+		<title>Writr Editor</title>
 	</head>
 	<body>
 		<iframe name="myiframe" style="display: none;"></iframe>
 		<form id="get-data-form" name="get-data-form" method="post" action="save.php" target="myiframe">
-
 			<textarea class="tinymce" id="texteditor" name="usertext"></textarea>
 			<input type="submit" value="Save Text">
+			<button formaction="downloadPDF.php">Download PDF</button>
+			<input type="hidden" name="fileName" id="fileName" value="user/user_data.txt">
 
 		</form>
 		<br/>
-		<button onclick="saveTextAsFile()">Download Data</button>
+		<button onclick="saveTextAsFile()">Download Data Dump</button>
 		<script type="text/javascript">
 			function saveTextAsFile()
 			{

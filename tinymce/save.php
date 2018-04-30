@@ -1,6 +1,7 @@
 <?php
+$filename = $_POST['fileName'];
 $text = $_POST['usertext'];
-$fp = fopen("user_data.txt", "w");
+$fp = fopen($filename, "w");
 $savestring = $text;
 fwrite($fp, $savestring);
 fclose($fp);
