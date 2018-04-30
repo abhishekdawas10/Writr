@@ -114,6 +114,24 @@ while ($fetch = mysqli_fetch_assoc($query)){
                 </div>
             </div>
         </section>
+         <iframe src="https://www.w3schools.com"></iframe> 
+        <section class="bg-light" id="branches">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase bg-light">Other Branches</h2>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div id="div1">
+                    <div id="chart_div">
+                        <iframe src="https://www.w3schools.com">
+                            <p>Your browser does not support iframes.</p>
+                        </iframe></div>
+                </div>
+            </div>
+        </section>
 
         <script>
             $(document).ready(function(){
