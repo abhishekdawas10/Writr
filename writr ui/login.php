@@ -65,12 +65,6 @@ if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 
 
 
-
-
-
-
-
-
 <!-- Code Begins -->
 <center>
 <div class="vpb_main_wrapper">
@@ -99,8 +93,7 @@ if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 
 </form>
 <br clear="all"><br clear="all">
-<div style="width:450px;float:left;" align="left"><?php echo $error  ?></div><br clear="all">
-</div>
+    </div>
 </center>
 <!-- Code Ends -->
 

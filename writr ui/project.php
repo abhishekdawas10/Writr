@@ -5,7 +5,7 @@ $_SESSION["url"]=(isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HT
 $filename=basename($_SESSION["url"]);
 $_SESSION["Project_ID"]=ltrim(strstr($_SESSION["url"], '?'), '?');
 $id= $_SESSION["Project_ID"];
-$con= mysqli_connect("localhost","root","", "writr");
+include 'connect.php';
 $query= mysqli_query($con, "SELECT * FROM `projects` WHERE project_id=$id");
 while ($fetch = mysqli_fetch_assoc($query)){
     $title = nl2br($fetch['name']);
@@ -62,10 +62,12 @@ while ($fetch = mysqli_fetch_assoc($query)){
                             <a class="nav-link js-scroll-trigger" href="#central">Central Branch</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#about">Branch Tree</a>
+                            <a class="nav-link js-scroll-trigger" href="#contact">Settings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#contact">Settings</a>
+                            <?php
+    echo "<a class=\"nav-link js-scroll-trigger\" href=\"tree.php?$id\">Branch Tree</a>"
+                            ?>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="logout.php">Log Out</a>
@@ -114,21 +116,14 @@ while ($fetch = mysqli_fetch_assoc($query)){
                 </div>
             </div>
         </section>
-         <iframe src="https://www.w3schools.com"></iframe> 
-        <section class="bg-light" id="branches">
+        <section class="bg-light" id="tree">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase bg-light">Other Branches</h2>
-                    </div>
-                </div>
-                <br/>
-                <br/>
-                <div id="div1">
-                    <div id="chart_div">
-                        <iframe src="https://www.w3schools.com">
-                            <p>Your browser does not support iframes.</p>
-                        </iframe></div>
+                        <?php
+    echo "<a class=\"btn btn-primary btn-xl text-uppercase js-scroll-trigger\" href=\"tree.php?$id\">Branch Tree</a>"  
+                        ?>
+                        </div>
                 </div>
             </div>
         </section>
@@ -165,6 +160,7 @@ while ($fetch = mysqli_fetch_assoc($query)){
             }
         ?>
         <section id="contact">
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
@@ -203,7 +199,7 @@ while ($fetch = mysqli_fetch_assoc($query)){
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <span class="copyright">Copyright &copy; Your Website 2018</span>
+                        <span class="copyright">Copyright &copy; Writr 2018</span>
                     </div>
                     <div class="col-md-4">
                         <ul class="list-inline social-buttons">

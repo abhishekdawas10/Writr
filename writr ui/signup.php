@@ -1,7 +1,8 @@
+
 <?php
 session_start();
 ob_start();
-//Include the database con file
+//Include the database connection file
 include "connect.php";
 //Check to see if the submit button has been clicked to process data
 if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
@@ -12,9 +13,10 @@ if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 	$lastname = trim(strip_tags($_POST['lastname']));
 	$user_email = trim(strip_tags($_POST['email']));
 	$user_password = trim(strip_tags($_POST['passwd']));
+	$user_description = trim(strip_tags($_POST['description']));
 	$encrypted_md5_password = md5($user_password);
 	
-	$check_for_duplicates = mysqli_query($con,"select * from `users` where `username` = '".mysqli_real_escape_string($con,$user_name)."'");
+	$check_for_duplicates = mysqli_query($connection,"select * from `users` where `username` = '".mysqli_real_escape_string($con,$user_name)."'");
 	
 	//Validate against empty fields
 	if($user_name == "" || $firstname == "" || $lastname == "" || $user_email == "" || $user_password == "")
@@ -28,8 +30,10 @@ if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 	}
 	else
 	{
-		if(mysqli_query($con,"insert into `users` values('', '".mysqli_real_escape_string($con,$user_name)."','".mysqli_real_escape_string($con,$firstname)."', '".mysqli_real_escape_string($con,$lastname)."', '".mysqli_real_escape_string($con,$user_email)."', '".mysqli_real_escape_string($con,$encrypted_md5_password)."', '".mysqli_real_escape_string($con,date('d-m-Y'))."')"))
+		if(mysqli_query($con,"insert into `users` values('', '".mysqli_real_escape_string($con,$user_name)."','".mysqli_real_escape_string($con,$firstname)."', '".mysqli_real_escape_string($con,$lastname)."', '".mysqli_real_escape_string($con,$user_email)."', '".mysqli_real_escape_string($con,$encrypted_md5_password)."', '".mysqli_real_escape_string($con,date('d-m-Y'))."', '".mysqli_real_escape_string($con,$user_description)."')"))
 		{
+            $id = mysqli_insert_id($con);
+            $_SESSION["user_id"]=$id;
 			$_SESSION["VALID_USER_ID"] = $user_name;
 			$_SESSION["USER_FULLNAME"] = strip_tags($firstname.'&nbsp;'.$lastname);
 			header("location: index.php?page_owner=".base64_encode($user_name));
@@ -94,9 +98,13 @@ if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 <div style="width:115px; padding-top:10px;float:left;" align="left">Email Address:</div>
 <div style="width:300px;float:left;" align="left"><input type="text" name="email" id="email" value="<?php  isset($_POST['email']) ? ($_POST["email"]): ''; ?>" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
 
+<div style="width:115px; padding-top:10px;float:left;" align="left">Description:</div>
+<div style="width:300px;float:left;" align="left"><input type="text" name="description" id="description" value="<?php  isset($_POST['description']) ? ($_POST["description"]): ''; ?>" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
 
 <div style="width:115px; padding-top:10px;float:left;" align="left">Desired Password:</div>
 <div style="width:300px;float:left;" align="left"><input type="password" name="passwd" id="passwd" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">
+
 
 
 <div style="width:115px; padding-top:10px;float:left;" align="left">&nbsp;</div>
