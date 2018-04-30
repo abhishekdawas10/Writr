@@ -40,6 +40,7 @@ while ($fetch = mysqli_fetch_assoc($query)){
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <!-- Custom styles for this template -->
         <link href="css/agency.min.css" rel="stylesheet">
+        <link href="css/tree.css" rel="stylesheet">
 
     </head>
 
@@ -56,17 +57,22 @@ while ($fetch = mysqli_fetch_assoc($query)){
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#description">Description</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#central">Central Branch</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#contact">Settings</a>
+                            <?php
+    echo "<a class=\"nav-link js-scroll-trigger\" href=\"project.php?$id#description\">Description</a>"
+                            ?>
                         </li>
                         <li class="nav-item">
                             <?php
-    echo "<a class=\"nav-link js-scroll-trigger\" href=\"tree.php?$id\">Branch Tree</a>"
+    echo "<a class=\"nav-link js-scroll-trigger\" href=\"project.php?$id#central\">Central Branch</a>"
+                            ?></li>
+                        <li class="nav-item">
+                            <?php
+    echo "<a class=\"nav-link js-scroll-trigger\" href=\"project.php?$id#contact\">Settings</a>"
+                            ?>
+                        </li>
+                        <li class="nav-item">
+                            <?php
+    echo "<a class=\"nav-link js-scroll-trigger active\" href=\"tree.php?$id\">Branch Tree</a>"
                             ?>
                         </li>
                         <li class="nav-item">
@@ -93,9 +99,39 @@ while ($fetch = mysqli_fetch_assoc($query)){
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading text-uppercase">Project Description</h2>
-                        <h3 class="section-subheading text-muted"><?php echo $desc?></h3>
-                        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#central">Central Branch</a>
+                        <h2 class="section-heading text-uppercase">Project Tree</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="tree">
+                            <?php
+                        
+                            function tree($fetch,$con,$id) {
+                                $node_id= $fetch['node_id'];
+                                $desc = $fetch['description'];    
+                                echo "<li><div><p>$desc</p></div>";
+                                $query2= mysqli_query($con, "SELECT * FROM `nodes` WHERE project_id= $id AND parent_id= $node_id AND isroot=0");
+                                if (mysqli_num_rows($query2)!=0){
+                                    echo "<ul>";
+                                    while ($fetch2 = mysqli_fetch_assoc($query2)){
+                                        tree($fetch2,$con,$id);
+                                    }
+                                    echo "</ul>";
+                                }
+                                echo "</li>";
+                            }
+                            $query= mysqli_query($con, "SELECT * FROM `nodes` WHERE project_id= $id AND isroot=1");
+                            if (mysqli_num_rows($query)!=0){
+                                while ($fetch = mysqli_fetch_assoc($query)){
+                                    echo "<ul>";
+                                    tree($fetch,$con,$id);
+                                    echo "</ul>";
+                                }
+                            }
+                            else{
+                                echo "<p>No node found.</p> <a href=\"\">Insert one now</a>";
+                            }
+                            ?>
                     </div>
                 </div>
             </div>
