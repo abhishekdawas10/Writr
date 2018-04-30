@@ -3,8 +3,8 @@
 session_start();
 ob_start();
 
-//Include the database con file
-include "connect.php"; 
+//Include the database connection file
+include "config.php"; 
 
 //Check to be sure that a valid session has been created
 if(isset($_SESSION["VALID_USER_ID"]))
@@ -20,7 +20,7 @@ if(isset($_SESSION["VALID_USER_ID"]))
 	}
 	
 	//Check the database table for the logged in user information
-	$check_user_details = mysqli_query($con,"select * from `users` where `username` = '".mysqli_real_escape_string($con,$page_owner)."'");
+	$check_user_details = mysqli_query($connection,"select * from `users` where `username` = '".mysqli_real_escape_string($connection,$page_owner)."'");
 	
 	//Get all the logged in user information from the database users table
 	$get_user_details = mysqli_fetch_array($check_user_details);
@@ -73,7 +73,7 @@ if(isset($_SESSION["VALID_USER_ID"]))
  //If the logged in user is not on his or her page then show him or her the follow and unfollow button otherwise show him or her the Edit Profile button
 if($page_owner != strip_tags($_SESSION["VALID_USER_ID"]))
 {
-	$check_following_or_not = mysqli_query($con,"select * from `follow_and_unfollow_activity` where `page_owners_emails` = '".mysqli_real_escape_string($con,$page_owner)."' and `followers_username` = '".mysqli_real_escape_string($con,$_SESSION["VALID_USER_ID"])."'");
+	$check_following_or_not = mysqli_query($connection,"select * from `follow_and_unfollow_activity` where `page_owners_emails` = '".mysqli_real_escape_string($connection,$page_owner)."' and `followers_username` = '".mysqli_real_escape_string($connection,$_SESSION["VALID_USER_ID"])."'");
 	
 	if(mysqli_num_rows($check_following_or_not) > 0)
 	{
@@ -122,7 +122,7 @@ When the page of that user opens, click on the Follow and/or Unfollow button tha
 
 <?php  
 //Check for all the users in the users table as people a logged in user may want to follow
-$check_users_in_the_system = mysqli_query($con,"select * from `users` order by `id` desc limit 100");
+$check_users_in_the_system = mysqli_query($connection,"select * from `users` order by `id` desc limit 100");
 
 if(mysqli_num_rows($check_users_in_the_system) > 0 )
 {

@@ -3,7 +3,6 @@
 session_start();
 $count = ( isset($_GET["count"])) ? trim ($_GET["count"]) : 5;
 $_SESSION["project_count"]= $count;
-
 ?>
 <html lang="en">
 

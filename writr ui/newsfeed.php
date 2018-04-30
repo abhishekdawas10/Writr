@@ -24,7 +24,7 @@ if (mysqli_num_rows($query)!=0){
     }
 }
 else{
-    echo "<div class=\"post-preview\">You do not have any projects! <br/><a class=\"btn btn-primary float-center\" href=\"create.php\">Create a new project now!</a></div>";
+    echo "<div class=\"post-preview\" style=\"color:white\">You do not have any projects! <br/><a class=\"btn btn-primary float-center\" href=\"create.php\">Create a new project now!</a></div>";
 }
 
 

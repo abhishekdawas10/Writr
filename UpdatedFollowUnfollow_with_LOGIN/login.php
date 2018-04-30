@@ -2,7 +2,7 @@
 session_start();
 ob_start();
 //Include the database connection file
-include "config.php";
+include "connect.php";
 //Check to see if the submit button has been clicked to process data
 if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 {
@@ -12,7 +12,7 @@ if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 	$user_password = trim(strip_tags($_POST['passwd']));
 	$encrypted_md5_password = md5($user_password);
 	
-	$validate_user_information = mysqli_query($connection,"select * from `users` where `username` = '".mysqli_real_escape_string($connection,$user_name)."' and `password` = '".mysqli_real_escape_string($connection,$encrypted_md5_password)."'");
+	$validate_user_information = mysqli_query($con,"select * from `registration` where `Username` = '".mysqli_real_escape_string($con,$user_name)."' and `Password` = '".mysqli_real_escape_string($con,$encrypted_md5_password)."'");
 	
 	//Validate against empty fields
 	if($user_name == "" || $user_password == "")
