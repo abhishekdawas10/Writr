@@ -105,11 +105,13 @@ while ($fetch = mysqli_fetch_assoc($query)){
                 <div class="row">
                     <div class="tree">
                             <?php
-                        
+                            $userid=$_SESSION["user_id"];
+                            $query3= mysqli_query($con, "SELECT * FROM `access` WHERE project_id=$id AND user_id=$userid");
                             function tree($fetch,$con,$id) {
+                                
                                 $node_id= $fetch['node_id'];
                                 $desc = $fetch['description'];    
-                                echo "<li><div><p>$desc</p></div>";
+                                echo "<a href=\"node.php?id=$node_id\"><li><div><p>$desc</p></div>";
                                 $query2= mysqli_query($con, "SELECT * FROM `nodes` WHERE project_id= $id AND parent_id= $node_id AND isroot=0");
                                 if (mysqli_num_rows($query2)!=0){
                                     echo "<ul>";
@@ -118,18 +120,23 @@ while ($fetch = mysqli_fetch_assoc($query)){
                                     }
                                     echo "</ul>";
                                 }
-                                echo "</li>";
+                                echo "</li></a>";
                             }
                             $query= mysqli_query($con, "SELECT * FROM `nodes` WHERE project_id= $id AND isroot=1");
-                            if (mysqli_num_rows($query)!=0){
-                                while ($fetch = mysqli_fetch_assoc($query)){
-                                    echo "<ul>";
-                                    tree($fetch,$con,$id);
-                                    echo "</ul>";
+                            if (mysqli_num_rows($query3)!=0){
+                                if (mysqli_num_rows($query)!=0){
+                                    while ($fetch = mysqli_fetch_assoc($query)){
+                                        echo "<ul>";
+                                        tree($fetch,$con,$id);
+                                        echo "</ul>";
+                                    }
                                 }
+                                else{
+                                    echo "<p>No node found.</p> <a href=\"insertnode.php?project=$id&parent=0\">Insert one now</a>";
+                                }    
                             }
                             else{
-                                echo "<p>No node found.</p> <a href=\"\">Insert one now</a>";
+                                echo "<p> You do not have access to view this project.</p>";
                             }
                             ?>
                     </div>

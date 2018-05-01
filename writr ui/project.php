@@ -40,6 +40,7 @@ while ($fetch = mysqli_fetch_assoc($query)){
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
         <!-- Custom styles for this template -->
         <link href="css/agency.min.css" rel="stylesheet">
+        <link href="css/tree.css" rel="stylesheet">
 
     </head>
 
@@ -62,12 +63,10 @@ while ($fetch = mysqli_fetch_assoc($query)){
                             <a class="nav-link js-scroll-trigger" href="#central">Central Branch</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#contact">Settings</a>
+                            <a class="nav-link js-scroll-trigger" href="#tree">Branch Tree</a>
                         </li>
                         <li class="nav-item">
-                            <?php
-    echo "<a class=\"nav-link js-scroll-trigger\" href=\"tree.php?$id\">Branch Tree</a>"
-                            ?>
+                            <a class="nav-link js-scroll-trigger" href="#contact">Settings</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="logout.php">Log Out</a>
@@ -116,14 +115,57 @@ while ($fetch = mysqli_fetch_assoc($query)){
                 </div>
             </div>
         </section>
-        <section class="bg-light" id="tree">
+        <section id="tree">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
+                        <h2 class="section-heading text-uppercase">Project Tree</h2>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="row">
+                    <div class="tree">
                         <?php
-    echo "<a class=\"btn btn-primary btn-xl text-uppercase js-scroll-trigger\" href=\"tree.php?$id\">Branch Tree</a>"  
+    $userid=$_SESSION["user_id"];
+            $query3= mysqli_query($con, "SELECT * FROM `access` WHERE project_id=$id AND user_id=$userid");
+            function tree($fetch,$con,$id) {
+
+                $node_id= $fetch['node_id'];
+                $desc = $fetch['description'];    
+                echo "<li><a href=\"node.php?id=$node_id\"><div><p>$desc</p></div>";
+                $query2= mysqli_query($con, "SELECT * FROM `nodes` WHERE project_id= $id AND parent_id= $node_id AND isroot=0");
+                $rowcount=mysqli_num_rows($query2);
+                if ($rowcount!=0){
+                    echo "<ul>";
+                    while ($fetch2 = mysqli_fetch_assoc($query2)){
+                        tree($fetch2,$con,$id);
+                    }
+                    echo "</ul>";
+                }
+//                else if ($rowcount===1){
+//                    while ($fetch2 = mysqli_fetch_assoc($query2)){
+//                        tree($fetch2,$con,$id);
+//                    }
+//                }
+                echo "</a></li>";
+            }
+            $query= mysqli_query($con, "SELECT * FROM `nodes` WHERE project_id= $id AND isroot=1");
+            if (mysqli_num_rows($query3)!=0){
+                if (mysqli_num_rows($query)!=0){
+                    while ($fetch = mysqli_fetch_assoc($query)){
+                        tree($fetch,$con,$id);
+                    }
+                }
+                else{
+                    echo "<p>No node found.</p> <a href=\"insertnode.php?project=$id&parent=0\">Insert one now</a>";
+                }    
+            }
+            else{
+                echo "<p> You do not have access to view this project.</p>";
+            }
                         ?>
-                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -141,23 +183,23 @@ while ($fetch = mysqli_fetch_assoc($query)){
         </script>
 
         <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = test_input($_POST["name"]);
-        $desc = test_input($_POST["desc"]);
-        $_SESSION["project_id"]=$id;
-        $_SESSION["project_name"]= $name;
-        $_SESSION["project_desc"]=$desc;
-        header("Location: saveproject.php");
-        exit; 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $name = test_input($_POST["name"]);
+            $desc = test_input($_POST["desc"]);
+            $_SESSION["project_id"]=$id;
+            $_SESSION["project_name"]= $name;
+            $_SESSION["project_desc"]=$desc;
+            header("Location: saveproject.php");
+            exit; 
 
-    }
+        }
 
-            function test_input($data) {
-                $data = trim($data);
-                $data = stripslashes($data);
-                $data = htmlspecialchars($data);
-                return $data;
-            }
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
         ?>
         <section id="contact">
 

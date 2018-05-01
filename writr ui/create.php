@@ -11,7 +11,7 @@ session_start();
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Writr - A Collaborative Writing Platform!</title>
+        <title>Writr - Create a new project!</title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,6 +30,7 @@ session_start();
 
     <body id="page-top">
 
+        
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="index.php">Writr</a>
@@ -58,7 +59,8 @@ session_start();
 
 
 
-        <?php
+
+         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = test_input($_POST["name"]);
             $desc = test_input($_POST["desc"]);
@@ -115,7 +117,7 @@ session_start();
                 </div>
             </div>
         </section>
-
+        
 
 
         <footer>
