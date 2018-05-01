@@ -113,6 +113,7 @@ while ($fetch = mysqli_fetch_assoc($query2)){
                                             parentNode($fetch2,$con,$projectid);
                                         }
                                         $file = file_get_contents("projects/$projectid/$parent_id/main.txt");
+                                        $GLOBALS['fulltext']=$GLOBALS['fulltext'].$file;
                                         echo "$file";
                                     }
                                 }
@@ -126,6 +127,7 @@ while ($fetch = mysqli_fetch_assoc($query2)){
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading text-uppercase">Full Text</h2>
                         <h3 class="section-subheading text-muted" style="font-size:20px"><?php 
+                            $GLOBALS['fulltext']="";
                             $query3= mysqli_query($con, "SELECT * FROM `nodes` WHERE node_id= $nodeid");
                             if (mysqli_num_rows($query3)!=0){
                                 while ($fetch = mysqli_fetch_assoc($query3)){
@@ -143,8 +145,11 @@ while ($fetch = mysqli_fetch_assoc($query2)){
                             else{
                                 $file = file_get_contents("projects/$id/$nodeid/main_$currentversion.txt");
                             }
-                            
+
                             echo "$file";
+                            $GLOBALS['fulltext']=$GLOBALS['fulltext'].$file;
+                            $txt= $GLOBALS['fulltext'];
+                            $_SESSION["fulltext"]=$txt;
                             ?></h3>
                         <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="getdata.php">Edit this node</a>
                         <?php 
@@ -154,9 +159,17 @@ while ($fetch = mysqli_fetch_assoc($query2)){
                 </div>
                 <br/>
                 <div class="row">
-                <div class="col-lg-12 text-center">
-                                            <form action="deletenode.php" method="get">
-                        <input type="submit" class="btn btn-primary btn-xl text-uppercase" value="Delete Node">
+                    <div class="col-lg-12 text-center">
+
+                        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="export.php">Export all text</a>
+                    </div>
+
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <form action="deletenode.php" method="get">
+                            <input type="submit" class="btn btn-primary btn-xl text-uppercase" value="Delete Node">
                         </form>
                     </div>
                 </div>
