@@ -12,7 +12,6 @@ if (mysqli_num_rows($query)!=0){
         $desc = nl2br($fetch['description']);
         echo "<div class=\"col-md-20 col-md-offset-10\">
                     <div class=\"team-member\">
-                        <img class=\"mx-auto rounded-circle\" src=\"img/team/2.jpg\" alt=\"\">
                         <h4>$username</h4>
                         <p class=\"text-muted\">$name<br/>$email<br/><br/>$desc</p>
                     </div>

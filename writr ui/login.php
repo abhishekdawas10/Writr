@@ -88,6 +88,7 @@ if(isset($_POST["submitted"]) && $_POST["submitted"] == "yes")
 <input type="hidden" name="submitted" id="submitted" value="yes">
 <input type="submit" name="submit" id="" value="Login" style="margin-right:50px;" class="vpb_general_button">
 <a href="signup.php" style="text-decoration:none;" class="vpb_general_button">Register</a>
+<a href="index3.php" style="text-decoration:none;" class="vpb_general_button">Forgot password?</a>
 
 </div>
 
