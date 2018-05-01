@@ -17,7 +17,6 @@ while ($fetch = mysqli_fetch_assoc($query)){
 <html lang="en">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="load_project_details.js"></script>
 
     <head>
 
@@ -143,11 +142,11 @@ while ($fetch = mysqli_fetch_assoc($query)){
                     }
                     echo "</ul>";
                 }
-//                else if ($rowcount===1){
-//                    while ($fetch2 = mysqli_fetch_assoc($query2)){
-//                        tree($fetch2,$con,$id);
-//                    }
-//                }
+                //                else if ($rowcount===1){
+                //                    while ($fetch2 = mysqli_fetch_assoc($query2)){
+                //                        tree($fetch2,$con,$id);
+                //                    }
+                //                }
                 echo "</a></li>";
             }
             $query= mysqli_query($con, "SELECT * FROM `nodes` WHERE project_id= $id AND isroot=1");
@@ -227,6 +226,15 @@ while ($fetch = mysqli_fetch_assoc($query)){
                                     <input id="sendMessageButton" style="center" class="btn btn-primary btn-xl text-uppercase" name="Submit" type="submit" value="Save">
                                 </div>
                             </div>
+                        </form>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <form action="delete.php" method="get">
+                        <input type="submit" class="btn btn-primary btn-xl text-uppercase" value="Delete Project">
                         </form>
                     </div>
                 </div>

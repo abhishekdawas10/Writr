@@ -1,0 +1,3 @@
+We have shown you some advanced search operators using Windows Search before and even how to change which files are indexed and how to rebuild your search index. But what about searching for text inside of .html, .php, .js, and other text-based web and scripting files? Windows search allows you to include other file extensions in its index with a few simple clicks.
+
+This technique works in Windows 10, 8, 7, or even Vista. The screens might look a little different, but it’s the same basic process on all versions.

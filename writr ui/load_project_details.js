@@ -4,7 +4,6 @@ google.charts.load('current', {'packages':['orgchart']});
     // Set a callback to run when the Google Visualization API is loaded.
     google.charts.setOnLoadCallback(drawChart);
 
-    document.write("hxi");  
     function drawChart() {
 
       var data = new google.visualization.DataTable();
