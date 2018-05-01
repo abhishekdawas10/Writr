@@ -67,7 +67,15 @@ include 'modify.php';
         <header class="masthead">
             <div class="container">
                 <div class="intro-text">
-                    <div class="intro-lead-in">Project Edited Successfully!</div>
+                    <div class="intro-lead-in"><?php
+                        $checkvar= $_SESSION['check_var'];
+                        if ($checkvar==1){
+                            echo "Project Edited Successfully!";
+                        }
+                        else{
+                            echo "You do not have permission to edit this project";
+                        }
+                        ?></div>
                     <div class="intro-heading text-uppercase"></div>
                     <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="project.php?<?php echo $_SESSION['project_id']?>">Go to Project Page: <?php echo $_SESSION['project_name']?></a>
                 </div>

@@ -3,6 +3,7 @@
 session_start();
 $_SESSION["url"]=(isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $filename=basename($_SESSION["url"]);
+$projectid= $_SESSION["project_id"];
 include 'insert2.php';
 ?>
 
@@ -78,7 +79,7 @@ include 'insert2.php';
                 <div class="intro-text">
                     <div class="intro-lead-in">Node Created Successfully!</div>
                     <div class="intro-heading text-uppercase"></div>
-                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="project.php?<?php echo $_SESSION['project_id']?>">Go to Project Page: <?php echo $_SESSION['project_name']?></a>
+                    <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="project.php?<?php echo $projectid;?>">Go to Project Page</a>
                 </div>
             </div>
         </header>

@@ -20,6 +20,12 @@ $query2= mysqli_query($con,"SELECT * FROM `users` WHERE id=$userid");
 while ($fetch = mysqli_fetch_assoc($query2)){
     $username= $fetch['username'];
 }
+$currentid= $_SESSION['user_id'];
+$query3= mysqli_query($con, "SELECT * FROM `access` WHERE project_id=$id AND user_id=$currentid");
+$_SESSION['access_var']=0;
+if (mysqli_num_rows($query3)!=0){
+    $_SESSION['access_var']=1;
+}
 ?>
 <!DOCTYPE html>
 
@@ -127,41 +133,58 @@ while ($fetch = mysqli_fetch_assoc($query2)){
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading text-uppercase">Full Text</h2>
                         <h3 class="section-subheading text-muted" style="font-size:20px"><?php 
-                            $GLOBALS['fulltext']="";
-                            $query3= mysqli_query($con, "SELECT * FROM `nodes` WHERE node_id= $nodeid");
-                            if (mysqli_num_rows($query3)!=0){
-                                while ($fetch = mysqli_fetch_assoc($query3)){
-                                    $rootcheck= $fetch['isroot'];
-                                    if ($rootcheck!=1){
-                                        parentNode($fetch,$con,$id);
+                            if ($_SESSION['access_var']==1){
+                                $GLOBALS['fulltext']="";
+                                $query3= mysqli_query($con, "SELECT * FROM `nodes` WHERE node_id= $nodeid");
+                                if (mysqli_num_rows($query3)!=0){
+                                    while ($fetch = mysqli_fetch_assoc($query3)){
+                                        $rootcheck= $fetch['isroot'];
+                                        if ($rootcheck!=1){
+                                            parentNode($fetch,$con,$id);
+                                        }
                                     }
-                                }
-                            }
-                            ?></h3>
-                        <h3 style="color:#fed136; font-size: 25px" class="section-subheading"><?php 
-                            if ($currentversion==1){
-                                $file = file_get_contents("projects/$id/$nodeid/main.txt");    
+                                }    
                             }
                             else{
-                                $file = file_get_contents("projects/$id/$nodeid/main_$currentversion.txt");
+                                echo "<p>Sorry. You do not have access permission.</p>";
                             }
-
-                            echo "$file";
-                            $GLOBALS['fulltext']=$GLOBALS['fulltext'].$file;
-                            $txt= $GLOBALS['fulltext'];
-                            $_SESSION["fulltext"]=$txt;
+                            
                             ?></h3>
-                        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="getdata.php">Edit this node</a>
+                        <h3 style="color:#fed136; font-size: 25px" class="section-subheading"><?php 
+                            if ($_SESSION['access_var']==1){
+                                if ($currentversion==1){
+                                    $file = file_get_contents("projects/$id/$nodeid/main.txt");    
+                                }
+                                else{
+                                    $file = file_get_contents("projects/$id/$nodeid/main_$currentversion.txt");
+                                }
+
+                                echo "$file";
+                                $GLOBALS['fulltext']=$GLOBALS['fulltext'].$file;
+                                $txt= $GLOBALS['fulltext'];
+                                $_SESSION["fulltext"]=$txt;
+                                }
+                            ?></h3>
+                        <?php
+                        if ($_SESSION['access_var']==1){
+                            echo "<a class=\"btn btn-primary btn-xl text-uppercase js-scroll-trigger\" href=\"getdata.php\">Edit this node</a>";
+                        }
+                        ?>
                         <?php 
-                        echo "<a class=\"btn btn-primary btn-xl text-uppercase js-scroll-trigger\" href=\"insertnode.php?project=$id&parent=$nodeid\">Insert new child node</a>"
+                        if ($_SESSION['access_var']==1){
+                            echo "<a class=\"btn btn-primary btn-xl text-uppercase js-scroll-trigger\" href=\"insertnode.php?project=$id&parent=$nodeid\">Insert new child node</a>";}
+                        
                         ?>
                     </div>
                 </div>
                 <br/>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-
-                        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="export.php">Export all text</a>
+                        <?php
+                        if ($_SESSION['access_var']==1){
+                            echo "<a class=\"btn btn-primary btn-xl text-uppercase js-scroll-trigger\" href=\"export.php\">Export all text</a>";
+                        }
+                        ?>
                     </div>
 
                 </div>
